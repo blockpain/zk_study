@@ -33,4 +33,13 @@ How exactly does a rollup work
 
 There is a smart contract on-chain which maintains a state root: the Merkle root of the state of the rollup (meaning, account balances, contract code, etc, that are "inside" the rollup).
 
-Anyone can publish a batch, a collection of tx in a highly compressed form together with the previous state root and the new state root. 
+Anyone can publish a batch, a collection of tx in a highly compressed form together with the previous state root and the new state root (the Merkle root after processing the txs). The contract checks that the previdous state root in the batch matches its current state root; if it does it switches the state root to the new state root
+
+ Optimistic rollups vs ZK rollups
+---------------------------------
+The two types of rollups are:
+1. Optimistic rollups, which use fraud proofs
+2. ZK rollups, which use validity proofs: every batch includes a cryptographic proof called a ZK-Snark, whcih proves that the post-state root is the correct result of executing the batch. No matter how large the computation, the proof can be very quickly verified on-chain.
+
+```
+NOTE: verification of a ZK-SNARK can be computationally intensive)

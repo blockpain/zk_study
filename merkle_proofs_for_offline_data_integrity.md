@@ -1,3 +1,5 @@
+https://ethereum.org/en/developers/tutorials/merkle-proofs-for-offline-data-integrity/#main-content
+
 Merkle proofs for offline data integrity
 ----------------------------------------
 
@@ -33,6 +35,17 @@ The root hash is the only part that needs to be stored on chain. To prove a cert
 
 Implementation
 --------------
+
+The following code contains 5 functions:
+    **getRoot()**; which returns the merkleRoot
+    **setRoot()**; which takes as input a new uint merkleroot, and sets this value
+    **hash()**; which is used to hash a given value
+    **pairHash()**; which takes the hash of two given values, `a` and `b`
+    **verifyProof()**; which takes as input a uint value, and uint[] `proof`. this takes the pairwise hashes of the given proof arguments to check whether the end result is equivalent to the merkleRoot
+
+important to note is the necessity of an authorization modifier on the `setRoot()` function, even though this is not implmemented in this example.
+
+
 https://github.com/qbzzt/merkle-proofs-for-offline-data-integrity
 
 ```
@@ -82,4 +95,9 @@ contract MerkleProof {
     
 }  // MarkleProof
 ```
+
+Creating a Merkle Proof
+-----------------------
+A merkle proof is the values to hash together with the value being provided to get back the Merkle root.
+
 
